@@ -34,7 +34,7 @@ export default class MainScreen extends Component {
             <View style={styles.Card}>
                 <Card>
                     <Card.Title title={plant.name}/>
-                    <Card.Cover source={{ uri: 'assets/placeholder_plant.svg' }} />
+                    <Card.Cover source={{ uri: './app/assets/placeholder_plant.svg' }} />
                     <Card.Content>
                         {/* <Title>{plant.name}</Title> */}
                         <Paragraph>This plant was last watered on {plant.last_watered}</Paragraph>
