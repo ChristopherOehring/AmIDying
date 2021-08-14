@@ -11,32 +11,33 @@ const DATA = [
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       name: 'Pflanziska',
       last_watered: date_str, 
-      img_location: './app/assets/placeholder_plant.svg', 
+      img_location: '../assets/placeholder_plant.png', 
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       name: 'Ingrids Monstera',
       last_watered: date_str, 
-      img_location: './app/assets/placeholder_plant.svg', 
+      img_location: '../assets/placeholder_plant.png', 
     },
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
       name: 'Der Baum',
       last_watered: date_str, 
-      img_location: '../assets/placeholder_plant.svg', 
+      img_location: '../assets/placeholder_plant.png', 
     },
   ];
 
 function createCard(item: any) {
     let plant = item.item 
-    console.log(plant)
+    // let img_location:string = plant.img_location
+    // console.log(img_location)
+    // let img = require(img_location)
     return (
         <View style={styles.Card}>
             <Card>
-                <Card.Title title={plant.name}/>
-                <Card.Cover source= {require('../assets/icon.png')} />
+                <Card.Cover source= {require('../assets/placeholder_plant.png')} />
                 <Card.Content>
-                    {/* <Title>{plant.name}</Title> */}
+                    <Title>{plant.name}</Title>
                     <Paragraph>This plant was last watered on {plant.last_watered}</Paragraph>
                 </Card.Content>
             </Card>
