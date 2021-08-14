@@ -4,6 +4,8 @@ import { useState, Component } from 'react';
 import { StyleSheet, Button, Text, View, } from 'react-native';
 import MainScreen from './app/screens/MainScreen';
 
-const App = MainScreen
-
-export default App
+export default function App() {
+    return(
+        <MainScreen />
+    );
+}
