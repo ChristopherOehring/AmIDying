@@ -6,16 +6,11 @@ import { Title, Card, Paragraph, Button, } from "react-native-paper";
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, } from '../components/Themed';
 
-export default function NewPlantButtonScreen({ navigation }: any) {
+export default function BarCodeRefScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Select</Text>
-        <Button onPress={() => navigation.navigate('CreateNewPlant')}>
-            Create new Plant
-        </Button>
-        <Button onPress={() => navigation.navigate('BarCodeRef')}>
-            Scan QR-Code
-        </Button>
+      <Text>Scan this QR</Text>
+      {/* ADD QR-SCANNER HERE */}
     </View>
   );
 }

@@ -20,6 +20,7 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabOneScreen: 'one',
               NewPlantButton: 'new',
               CreateNewPlant: 'create',
+              BarCodeRef: 'qr',
             },
           },
           TabTwo: {

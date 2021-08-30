@@ -12,6 +12,7 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import BarCodeRefScreen from '../screens/BarCodeRefScreen';
 import CreateNewPlantScreen from '../screens/CreateNewPlantScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NewPlantButtonScreen from '../screens/NewPlantButtonScreen';
@@ -46,6 +47,7 @@ function RootNavigator() {
         <Stack.Screen name="Modal" component={ModalScreen} />
         <Stack.Screen name="NewPlantButton" component={NewPlantButtonScreen}/>
         <Stack.Screen name="CreateNewPlant" component={CreateNewPlantScreen}/>
+        <Stack.Screen name="BarCodeRef" component={BarCodeRefScreen}/>
       </Stack.Group>
     </Stack.Navigator>
   );
