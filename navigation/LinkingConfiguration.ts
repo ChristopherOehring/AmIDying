@@ -18,6 +18,8 @@ const linking: LinkingOptions<RootStackParamList> = {
           TabOne: {
             screens: {
               TabOneScreen: 'one',
+              NewPlantButton: 'new',
+              CreateNewPlant: 'create',
             },
           },
           TabTwo: {

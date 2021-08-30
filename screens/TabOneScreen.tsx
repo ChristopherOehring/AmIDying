@@ -5,15 +5,16 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import Library from './Library';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
+import { Button } from 'react-native-paper';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const navi = navigation
   return (
     <View style={styles.container} >
-      {/* <Text style={styles.title}>Tab One</Text> */}
-      {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
       <Library navigation={navi} path={'./Library'}/>
-      {/* <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
+      <Button onPress={() => navigation.navigate('NewPlantButton')} >
+        New Plant
+      </Button>
     </View>
   );
 }

@@ -35,7 +35,7 @@ function createCard(item: any, navigation: any) {
     // let img = require(img_location)
     return (
         <View style={styles.Card}>
-            <Card onPress={() => navigation.navigate('Modal')}>
+            <Card onPress={() => navigation.navigate('Modal',{item: item,})}>
                 <Card.Cover source= {require('../assets/images/placeholder_plant.png')} />
                 <Card.Content>
                     <Title>{plant.name}</Title>

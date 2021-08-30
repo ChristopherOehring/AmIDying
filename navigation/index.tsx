@@ -12,7 +12,9 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import CreateNewPlantScreen from '../screens/CreateNewPlantScreen';
 import ModalScreen from '../screens/ModalScreen';
+import NewPlantButtonScreen from '../screens/NewPlantButtonScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
@@ -42,6 +44,8 @@ function RootNavigator() {
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="NewPlantButton" component={NewPlantButtonScreen}/>
+        <Stack.Screen name="CreateNewPlant" component={CreateNewPlantScreen}/>
       </Stack.Group>
     </Stack.Navigator>
   );
