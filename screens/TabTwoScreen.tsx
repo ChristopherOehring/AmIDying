@@ -1,24 +1,65 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { useForm, Controller } from "react-hook-form";
+import { TextInput, Button } from 'react-native-paper';
 
 export default function TabTwoScreen() {
+  const { control, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = (data: any) => console.log(data);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <Controller
+        control={control}
+        rules={{
+          maxLength: 100,
+          required: true,
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            mode="flat"
+            label="Your Name"
+            style={{
+              position: "relative",
+              height: 50,
+              marginTop: 30
+            }}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            left={<TextInput.Icon name="fountain-pen-tip" />}
+            />
+        )}
+        name="name"
+        defaultValue=""/>
+
+      {errors.name && <Text>This is required.</Text>}
+      <Pressable onPress={handleSubmit(onSubmit)}>
+        <Button 
+          icon="arrow-collapse-down"
+          mode="contained"
+          style={{
+            marginTop: 20
+          }}>
+            Save
+        </Button>
+      </Pressable>
+      {/* <Button 
+        title="Save" 
+        onPress={handleSubmit(onSubmit)}
+        
+      /> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 0,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   title: {
     fontSize: 20,
