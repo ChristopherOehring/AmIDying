@@ -91,9 +91,10 @@ export default Library
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 0,
         backgroundColor: '#fff',
         marginTop: StatusBar.currentHeight || 0,
+
     },
     Card: {
         padding: 10,
