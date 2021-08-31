@@ -39,8 +39,7 @@ export default function BarCodeRefScreen({ navigation }: any) {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title="Add Plant" onPress={() => setScanned(false)} />}
-      {/* ADD QR-SCANNER HERE */}
+      {scanned && <Button title="Add Plant" onPress={() => {setScanned(false); navigation.replace("Root")}} />}
     </View>
   );
 }
