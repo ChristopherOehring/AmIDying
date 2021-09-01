@@ -8,10 +8,12 @@ import { StyleSheet, Button } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, } from '../components/Themed';
+import { useTheme } from 'react-native-paper';
 
 export default function BarCodeRefScreen({ navigation }: any) {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
+  const theme = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -33,7 +35,12 @@ export default function BarCodeRefScreen({ navigation }: any) {
     return <Text>No access to camera</Text>;
   }
   return (
-    <View style={styles.container}>
+    <View style={{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme?.colors.background,
+    }}>
       <Text>Scan this QR</Text>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}

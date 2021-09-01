@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform, StyleSheet, Button } from 'react-native';
-import { Title, Card, Paragraph, TextInput  } from "react-native-paper";
+import { Title, Card, Paragraph, TextInput, useTheme  } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -11,10 +11,15 @@ import { Text, View, } from '../components/Themed';
 export default function CreateNewPlantScreen({ navigation }: any) {
   const { control, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data: any) => console.log(data);
+  const theme = useTheme();
   // const onSubmit = (data: any) => alert(`data ${data}`);
 
   return (
-    <View style={styles.container}>
+    <View style={{
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: theme?.colors.background,
+    }}>
       <Controller
           control={control}
           rules={{
@@ -50,7 +55,7 @@ export default function CreateNewPlantScreen({ navigation }: any) {
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
             mode="outlined"
-            label="Next watering"
+            label="Watering interval"
             style={{
               position: "relative",
               height: 50,

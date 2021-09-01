@@ -1,10 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Platform, StyleSheet } from 'react-native';
-import { Title, Card, Paragraph, Button, useTheme, } from "react-native-paper";
-
+import { Platform, Pressable, StyleSheet, Image } from 'react-native';
+import { Title, Card, Paragraph, Button, useTheme, Text, Portal } from "react-native-paper";
+import { format } from "date-fns";
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View, } from '../components/Themed';
+import { View, } from '../components/Themed';
+
+let d = new Date(2021, 7, 13)
+var date_str = format(d, "dd. MMM. yyyy")
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    name: 'Pflanziska',
+    last_watered: date_str, 
+    img_location: '../assets/images/placeholder_plant.png', 
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    name: 'Ingrids Monstera',
+    last_watered: date_str, 
+    img_location: '../assets/images/placeholder_plant.png', 
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    name: 'Der Baum',
+    last_watered: date_str, 
+    img_location: '../assets/images/placeholder_plant.png', 
+  },
+];
 
 export default function ModalScreen({ navigation, route }: any) {
   const { item } = route.params;
@@ -16,18 +40,23 @@ export default function ModalScreen({ navigation, route }: any) {
       justifyContent: 'center',
       backgroundColor: theme?.colors.background,
     }}>
-      <Text style={styles.title}>Details</Text>
-      {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
-      <Text>
-        Hier bist du auf der Detail-Ansicht von {item.name}!!
-      </Text>
-      <Button onPress={() => navigation.replace('Root')}>
-        Back
-      </Button>
-      {/* <EditScreenInfo path="/screens/ModalScreen.tsx" /> */}
+<Image source={{uri: 'https://www.collinsdictionary.com/images/full/plant_108417266.jpg'}}
+       style={{width: 200, height: 200}} />
 
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      {/* <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} /> */}
+      {/* CHANGE IMAGE BUTTON */}
+      <Text theme={theme}>
+        Time till I slowly die:
+      </Text>
+      <Text theme={theme}>
+        15 days
+      </Text>
+      <Button 
+        theme={theme} 
+        mode="contained"
+        onPress={() => console.log("Button Pressed!")}>
+        watered today!
+      </Button>
+
     </View>
   );
 }
