@@ -4,13 +4,19 @@ import { StyleSheet, Pressable } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { useForm, Controller } from "react-hook-form";
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, useTheme } from 'react-native-paper';
 
 export default function TabTwoScreen() {
   const { control, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data: any) => console.log(data);
+  const theme = useTheme();
   return (
-    <View style={styles.container}>
+    <View style={{
+      flex: 0,
+      paddingLeft: 20,
+      paddingRight: 20,
+      backgroundColor: theme?.colors.background,
+    }} >
       <Controller
         control={control}
         rules={{

@@ -10,8 +10,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
+//import Colors from '../constants/Colors';
+//import useColorScheme from '../hooks/useColorScheme';
 import BarCodeRefScreen from '../screens/BarCodeRefScreen';
 import CreateNewPlantScreen from '../screens/CreateNewPlantScreen';
 import ModalScreen from '../screens/ModalScreen';
@@ -22,13 +22,15 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useTheme } from 'react-native-paper';
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation({ theme }: any) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}>
-      <RootNavigator />
+      // theme={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}
+      theme={theme}>
+      <RootNavigator/>
     </NavigationContainer>
   );
 }
@@ -42,7 +44,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -54,25 +56,20 @@ function RootNavigator() {
   );
 }
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+  const theme = useTheme();
 
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
       screenOptions={{
-        tabBarActiveTintColor: "#000000",
-        tabBarActiveBackgroundColor: '#C0C0C0',
-        //tabBarBackground: '#676767',
-      }}
-       
-      >
+        tabBarActiveTintColor: theme?.colors.primary,
+        tabBarActiveBackgroundColor: theme?.colors.background,
+        tabBarInactiveBackgroundColor: theme?.colors.disabled,       
+        tabBarHideOnKeyboard: true
+      }}>
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
@@ -80,20 +77,6 @@ function BottomTabNavigator() {
           title: 'Dashboard',
           headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIconMCI name="flower" color={color} />,
-          // headerRight: () => (
-          //   <Pressable
-          //     onPress={() => navigation.navigate('Modal')}
-          //     style={({ pressed }) => ({
-          //       opacity: pressed ? 0.5 : 1,
-          //     })}>
-          //     {/* <FontAwesome
-          //       name="info-circle"
-          //       size={25}
-          //       color={Colors[colorScheme].text}
-          //       style={{ marginRight: 15 }}
-          //     /> */}
-          //   </Pressable>
-          // ),
         })}
       />
       <BottomTab.Screen
@@ -102,7 +85,6 @@ function BottomTabNavigator() {
         options={{
           title: 'Options',
           tabBarIcon: ({ color }) => <TabBarIconMI name="settings" color={color} />,
-          // headerShown: false
         }}
       />
     </BottomTab.Navigator>

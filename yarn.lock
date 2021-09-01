@@ -9552,6 +9552,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"react-hook-form@npm:^7.14.1":
+  version: 7.14.1
+  resolution: "react-hook-form@npm:7.14.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17
+  checksum: 767a3bf8b46f14699cfe015406861f2d589aea0ddff367781cc39f822550d38e2b506700090e1b3b3e1e2dd39a57f7634b394be44fad4688a1a3fe743e3d9a46
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.12.0, react-is@npm:^16.13.0, react-is@npm:^16.7.0, react-is@npm:^16.8.1, react-is@npm:^16.8.4, react-is@npm:^16.8.6":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -10095,6 +10104,7 @@ resolve@1.1.7:
     "@types/react": ~16.9.35
     "@types/react-native": ~0.63.2
     date-fns: ^2.23.0
+    deepmerge: ^4.2.2
     expo: ~42.0.1
     expo-asset: ~8.3.2
     expo-barcode-scanner: ~10.2.2
@@ -10107,6 +10117,7 @@ resolve@1.1.7:
     jest-expo: ~41.0.0-beta.0
     react: 16.13.1
     react-dom: 16.13.1
+    react-hook-form: ^7.14.1
     react-native: "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz"
     react-native-gesture-handler: ~1.10.2
     react-native-paper: ^4.9.2

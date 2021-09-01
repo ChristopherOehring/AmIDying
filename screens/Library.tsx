@@ -1,11 +1,14 @@
 import React, { Component, } from "react";
 import { StyleSheet, FlatList, View, StatusBar } from "react-native";
-import { Title, Card, Paragraph, Button, } from "react-native-paper";
+import { Title, Card, Paragraph, Button, useTheme, } from "react-native-paper";
 import { format } from "date-fns";
 import { RootStackParamList, RootTabScreenProps } from "../types";
+import { ThemeProvider } from "@react-navigation/native";
 
 let d = new Date(2021, 7, 13)
 var date_str = format(d, "dd. MMM. yyyy")
+
+//const theme = useTheme();
 
 const DATA = [
     {
@@ -29,7 +32,8 @@ const DATA = [
   ];
 
 function createCard(item: any, navigation: any) {
-    let plant = item
+    let plant = item;
+    //const theme = useTheme();
     // let img_location:string = plant.img_location
     // console.log(img_location)
     // let img = require(img_location)
@@ -46,42 +50,19 @@ function createCard(item: any, navigation: any) {
     )
 }
 
-// {/* <BottomTab.Screen
-//         name="TabOne"
-//         component={TabOneScreen}
-//         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-//           title: 'Dashboard',
-//           headerShown: false,
-//           // tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-//           // headerRight: () => (
-//           //   <Pressable
-//           //     onPress={() => navigation.navigate('Modal')}
-//           //     style={({ pressed }) => ({
-//           //       opacity: pressed ? 0.5 : 1,
-//           //     })}>
-//           //     {/* <FontAwesome
-//           //       name="info-circle"
-//           //       size={25}
-//           //       color={Colors[colorScheme].text}
-//           //       style={{ marginRight: 15 }}
-//           //     /> */}
-//           //   </Pressable>
-//           // ),
-//         })}
-//       /> */}
-
-function Library({ navigation }: any) {
+function Library({ navigation}: any) {
+    const theme = useTheme()
     return (
-        <View style={styles.container} >
+        <View style={{
+            backgroundColor: theme?.colors.background,
+            marginLeft: 0,
+            marginRight: 0,
+        }}>
             <FlatList
                 data={DATA}
                 renderItem={({ item }) => createCard(item, navigation)}
                 keyExtractor={item => item.id}
-                // extraData={navigation}
             />
-            {/* <Button onPress={() => navigation.replace('Modal')}>
-                Move
-            </Button> */}
         </View>
 
     )
@@ -92,9 +73,8 @@ export default Library
 const styles = StyleSheet.create({
     container: {
         flex: 0,
-        backgroundColor: '#fff',
+        //backgroundColor: theme?.colors.background,
         marginTop: StatusBar.currentHeight || 0,
-
     },
     Card: {
         padding: 10,

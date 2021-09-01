@@ -1,15 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import { Title, Card, Paragraph, Button, } from "react-native-paper";
+import { Title, Card, Paragraph, Button, useTheme, } from "react-native-paper";
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, } from '../components/Themed';
 
 export default function ModalScreen({ navigation, route }: any) {
   const { item } = route.params;
+  const theme = useTheme();
   return (
-    <View style={styles.container}>
+    <View style={{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme?.colors.background,
+    }}>
       <Text style={styles.title}>Details</Text>
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
       <Text>

@@ -5,35 +5,47 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import Library from './Library';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
-import { Button, FAB, Portal, Provider } from 'react-native-paper';
+import { Button, FAB, Portal, Provider, useTheme } from 'react-native-paper';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const [state, setState] = React.useState({ open: false });
-
+  const theme = useTheme();
   const onStateChange = ({ open }:any) => setState({ open });
 
   const { open } = state;
   return (
-    <View style={styles.container} >
+    <View style={{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme?.colors.background,
+    }} >
       <Library navigation={navigation} path={'./Library'}/>
       <Provider>
-        <Portal>
+        <Portal theme={theme}>
           <FAB.Group
             open={open}
-            icon={open ? "arrow-down" : "plus"}
+            icon={open ? "close" : "plus"}
             visible={true}
-            theme={{ colors: { backdrop: 'transparent' } }}
-            style={{
-              
-            }}
+            theme={theme}
+            // color={"green"}
+            // style={{
+            //   backgroundColor: "green"
+            // }}
             actions={[
               { 
                 icon: "plus", 
                 onPress: () => navigation.navigate('CreateNewPlant'),
+                style: {
+                  backgroundColor: theme?.colors.text
+                }
               },
               {
                 icon: 'qrcode-scan',
                 onPress: () => navigation.navigate('BarCodeRef'),
+                style: {
+                  backgroundColor: theme?.colors.text
+                }
               }
             ]}
             onStateChange={onStateChange}

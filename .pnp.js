@@ -45,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:16.9.56"],
             ["@types/react-native", "npm:0.63.53"],
             ["date-fns", "npm:2.23.0"],
+            ["deepmerge", "npm:4.2.2"],
             ["expo", "npm:42.0.3"],
             ["expo-asset", "npm:8.3.3"],
             ["expo-barcode-scanner", "npm:10.2.2"],
@@ -57,6 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-expo", "npm:41.0.0"],
             ["react", "npm:16.13.1"],
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.13.1"],
+            ["react-hook-form", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:7.14.1"],
             ["react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz"],
             ["react-native-gesture-handler", "npm:1.10.3"],
             ["react-native-paper", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.9.2"],
@@ -14190,6 +14192,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["react-hook-form", [
+        ["npm:7.14.1", {
+          "packageLocation": "./.yarn/cache/react-hook-form-npm-7.14.1-7cd5a1e5ca-767a3bf8b4.zip/node_modules/react-hook-form/",
+          "packageDependencies": [
+            ["react-hook-form", "npm:7.14.1"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:7.14.1", {
+          "packageLocation": "./.yarn/$$virtual/react-hook-form-virtual-af80c14f08/0/cache/react-hook-form-npm-7.14.1-7cd5a1e5ca-767a3bf8b4.zip/node_modules/react-hook-form/",
+          "packageDependencies": [
+            ["react-hook-form", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:7.14.1"],
+            ["@types/react", "npm:16.9.56"],
+            ["react", "npm:16.13.1"]
+          ],
+          "packagePeers": [
+            "@types/react",
+            "react"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["react-is", [
         ["npm:16.13.1", {
           "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-11bcf1267a.zip/node_modules/react-is/",
@@ -14907,6 +14931,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:16.9.56"],
             ["@types/react-native", "npm:0.63.53"],
             ["date-fns", "npm:2.23.0"],
+            ["deepmerge", "npm:4.2.2"],
             ["expo", "npm:42.0.3"],
             ["expo-asset", "npm:8.3.3"],
             ["expo-barcode-scanner", "npm:10.2.2"],
@@ -14919,6 +14944,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-expo", "npm:41.0.0"],
             ["react", "npm:16.13.1"],
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.13.1"],
+            ["react-hook-form", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:7.14.1"],
             ["react-native", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz"],
             ["react-native-gesture-handler", "npm:1.10.3"],
             ["react-native-paper", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.9.2"],
