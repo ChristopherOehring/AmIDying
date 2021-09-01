@@ -10,7 +10,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, } from '../components/Themed';
 
 export default function BarCodeRefScreen({ navigation }: any) {
-  const [hasPermission, setHasPermission] = useState(null);
+  const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
 
   useEffect(() => {
