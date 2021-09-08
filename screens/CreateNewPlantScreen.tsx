@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Platform, StyleSheet, Button } from 'react-native';
-import { Title, Card, Paragraph, TextInput, useTheme  } from "react-native-paper";
+import { Platform, StyleSheet, } from 'react-native';
+import { Title, Card, Paragraph, TextInput, useTheme, Button  } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -72,7 +72,7 @@ export default function CreateNewPlantScreen({ navigation }: any) {
 
       {errors.watered && <Text>This has to be a number!</Text>}
 
-      <Button title="Submit" onPress={handleSubmit(onSubmit)}/>
+      <Button mode="contained" theme={theme} onPress={handleSubmit(onSubmit)}>Submit</Button>
     </View>
   );
 }

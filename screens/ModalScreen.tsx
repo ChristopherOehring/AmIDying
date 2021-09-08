@@ -40,8 +40,8 @@ export default function ModalScreen({ navigation, route }: any) {
       justifyContent: 'center',
       backgroundColor: theme?.colors.background,
     }}>
-<Image source={{uri: 'https://www.collinsdictionary.com/images/full/plant_108417266.jpg'}}
-       style={{width: 200, height: 200}} />
+      <Image source={{uri: 'https://www.collinsdictionary.com/images/full/plant_108417266.jpg'}}
+            style={{width: 200, height: 200}} />
 
       {/* CHANGE IMAGE BUTTON */}
       <Text theme={theme}>

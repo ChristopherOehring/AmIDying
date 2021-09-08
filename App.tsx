@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { PreferencesContext } from './hooks/PreferencesContext';
 
 import {
   NavigationContainer,
@@ -25,27 +26,67 @@ const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+  const [isThemeDark, setIsThemeDark] = React.useState(false);
+
+  let theme = isThemeDark ? Darktheme : Lighttheme;
+
+  const toggleTheme = React.useCallback(() => {
+    if (isThemeDark){
+      return setIsThemeDark(false);
+    }
+    else{
+      return setIsThemeDark(true);
+    }
+    
+    // return setIsThemeDark(isThemeDark);
+  }, [isThemeDark]);
+
+  const preferences = React.useMemo(
+    () => ({
+      toggleTheme,
+      isThemeDark,
+    }),
+    [toggleTheme, isThemeDark]
+  );
+
+
 
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
-      <PaperProvider theme={CombinedDarkTheme}>
-        <SafeAreaProvider>
-          <Navigation theme={CombinedDarkTheme} />
-        </SafeAreaProvider>
-      </PaperProvider>
+      <PreferencesContext.Provider value={preferences}>
+        <PaperProvider theme={theme}>
+          <SafeAreaProvider>
+            <Navigation theme={theme} />
+          </SafeAreaProvider>
+        </PaperProvider>
+      </PreferencesContext.Provider>
     );
   }
 }
 
-const theme = {
-  ...DefaultTheme,
+const Darktheme = {
+  ...PaperDarkTheme,
   // roundness: 2,
   colors: {
-  ...DefaultTheme.colors,
-  primary: '#3498db',
-  accent: '#f1c40f',
+  ...PaperDarkTheme.colors,
+  primary: '#26b564',
+  accent: '#26b564',
+  background: "#121212",
+  surface: "#1e1e1e"
   },
 }
-
+//theme?.colors.
+const Lighttheme = {
+  ...PaperDefaultTheme,
+  // roundness: 2,
+  colors: {
+  ...PaperDefaultTheme.colors,
+  primary: '#26b564',
+  accent: '#26b564',
+  background: "#f6f6f6",
+  surface: "#ffffff",
+  disabled: "#717171"
+  },
+}

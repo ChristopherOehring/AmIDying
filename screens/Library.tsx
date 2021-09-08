@@ -57,6 +57,7 @@ function Library({ navigation}: any) {
             backgroundColor: theme?.colors.background,
             marginLeft: 0,
             marginRight: 0,
+            marginTop: StatusBar.currentHeight || 0
         }}>
             <FlatList
                 data={DATA}

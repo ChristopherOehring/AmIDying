@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import { Platform, } from 'react-native';
 //import { Title, Card, Paragraph, Button, } from "react-native-paper";
 import { BarCodeScanner } from 'expo-barcode-scanner';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, } from '../components/Themed';
-import { useTheme } from 'react-native-paper';
+import { useTheme, Button } from 'react-native-paper';
 
 export default function BarCodeRefScreen({ navigation }: any) {
   const [hasPermission, setHasPermission] = useState(false);
@@ -46,7 +46,7 @@ export default function BarCodeRefScreen({ navigation }: any) {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title="Add Plant" onPress={() => {setScanned(false); navigation.replace("Root")}} />}
+      {scanned && <Button mode="contained" theme={theme} onPress={() => {setScanned(false); navigation.replace("Root")}}>Add Plant</Button>}
     </View>
   );
 }

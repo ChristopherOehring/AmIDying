@@ -42,15 +42,25 @@ export default function Navigation({ theme }: any) {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  let theme = useTheme()
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-        <Stack.Screen name="NewPlantButton" component={NewPlantButtonScreen}/>
-        <Stack.Screen name="CreateNewPlant" component={CreateNewPlantScreen}/>
-        <Stack.Screen name="BarCodeRef" component={BarCodeRefScreen}/>
+        <Stack.Screen name="Modal" component={ModalScreen} options={{
+          headerStyle:{backgroundColor: theme?.colors.surface},
+          title:"detail view"
+        }}/>
+        <Stack.Screen name="NewPlantButton" component={NewPlantButtonScreen} options={{headerStyle:{backgroundColor: theme?.colors.surface}}}/>
+        <Stack.Screen name="CreateNewPlant" component={CreateNewPlantScreen} options={{
+          headerStyle:{backgroundColor: theme?.colors.surface},
+          title: "Create new plant"
+        }}/>
+        <Stack.Screen name="BarCodeRef" component={BarCodeRefScreen} options={{
+          headerStyle:{backgroundColor: theme?.colors.surface},
+          title:"QR-code scanner"
+        }}/>
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -66,9 +76,10 @@ function BottomTabNavigator() {
       initialRouteName="TabOne"
       screenOptions={{
         tabBarActiveTintColor: theme?.colors.primary,
-        tabBarActiveBackgroundColor: theme?.colors.background,
-        tabBarInactiveBackgroundColor: theme?.colors.disabled,       
-        tabBarHideOnKeyboard: true
+        tabBarActiveBackgroundColor: theme?.colors.disabled,
+        tabBarInactiveBackgroundColor: theme?.colors.background,       
+        tabBarHideOnKeyboard: true,
+        tabBarInactiveTintColor: theme?.colors.placeholder
       }}>
       <BottomTab.Screen
         name="TabOne"

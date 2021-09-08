@@ -4,12 +4,14 @@ import { StyleSheet, Pressable } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { useForm, Controller } from "react-hook-form";
-import { TextInput, Button, useTheme } from 'react-native-paper';
+import { TextInput, Button, useTheme, TouchableRipple, Switch, Surface  } from 'react-native-paper';
+import { PreferencesContext } from '../hooks/PreferencesContext';
 
 export default function TabTwoScreen() {
   const { control, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data: any) => console.log(data);
   const theme = useTheme();
+  const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
   return (
     <View style={{
       flex: 0,
@@ -17,6 +19,35 @@ export default function TabTwoScreen() {
       paddingRight: 20,
       backgroundColor: theme?.colors.background,
     }} >
+      <View style={{
+        flexDirection: "row",
+        backgroundColor: theme?.colors.surface,
+        alignContent: "flex-end",
+        justifyContent: "center",
+        padding: 10,
+        marginLeft: 40,
+        marginRight: 40,
+      }}>
+        <Text style={{
+          color: theme?.colors.text,
+          marginRight: 25,
+          height: 28,
+          textAlignVertical: "center",
+          zIndex: -1,
+        }}>Darkmode</Text>
+        <Switch
+          style={[{ 
+            //position: "absolute",
+            backgroundColor: theme.colors.surface,
+            right: 0,
+            zIndex: 1,
+          }]}
+          color={'red'}
+          value={isThemeDark}
+          onValueChange={toggleTheme}
+        />
+      </View>
+      
       <Controller
         control={control}
         rules={{
