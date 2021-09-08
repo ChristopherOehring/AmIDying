@@ -56,7 +56,12 @@ export default function ModalScreen({ navigation, route }: any) {
         onPress={() => console.log("Button Pressed!")}>
         watered today!
       </Button>
-
+      <Button
+        theme={theme}
+        mode="contained"
+        onPress={() => navigation.navigate("QRCode",{item: item,})}>
+        Press to save QR-Code
+      </Button>
     </View>
   );
 }

@@ -21,6 +21,7 @@ const linking: LinkingOptions<RootStackParamList> = {
               NewPlantButton: 'new',
               CreateNewPlant: 'create',
               BarCodeRef: 'qr',
+              QRCode: 'show-qr'
             },
           },
           TabTwo: {

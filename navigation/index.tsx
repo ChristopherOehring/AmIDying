@@ -23,6 +23,7 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from 'react-native-paper';
+import QRCodeScreen from '../screens/QRCodeScreen';
 
 export default function Navigation({ theme }: any) {
   return (
@@ -60,6 +61,10 @@ function RootNavigator() {
         <Stack.Screen name="BarCodeRef" component={BarCodeRefScreen} options={{
           headerStyle:{backgroundColor: theme?.colors.surface},
           title:"QR-code scanner"
+        }}/>
+        <Stack.Screen name="QRCode" component={QRCodeScreen} options={{
+          headerStyle:{backgroundColor: theme?.colors.surface},
+          title:"QR-code generator"
         }}/>
       </Stack.Group>
     </Stack.Navigator>

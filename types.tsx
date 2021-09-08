@@ -20,6 +20,7 @@ export type RootStackParamList = {
   NewPlantButton: undefined;
   CreateNewPlant: undefined;
   BarCodeRef: undefined;
+  QRCode: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

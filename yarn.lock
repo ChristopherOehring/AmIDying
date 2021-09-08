@@ -3895,6 +3895,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"boolbase@npm:^1.0.0, boolbase@npm:~1.0.0":
+  version: 1.0.0
+  resolution: "boolbase@npm:1.0.0"
+  checksum: e827963c416fdb1dbcd57e066a43c40829518f4dcdc9f58ed04519daeebb610adacbb6cf102518bda9f08be593c5b1b49a83e36bf6b7d91b3403f7e35510eeae
+  languageName: node
+  linkType: hard
+
 "bplist-creator@npm:0.0.8":
   version: 0.0.8
   resolution: "bplist-creator@npm:0.0.8"
@@ -3997,7 +4004,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer-alloc@npm:^1.1.0":
+"buffer-alloc@npm:^1.1.0, buffer-alloc@npm:^1.2.0":
   version: 1.2.0
   resolution: "buffer-alloc@npm:1.2.0"
   dependencies:
@@ -4028,14 +4035,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer-from@npm:^1.0.0":
+"buffer-from@npm:^1.0.0, buffer-from@npm:^1.1.1":
   version: 1.1.2
   resolution: "buffer-from@npm:1.1.2"
   checksum: 7fc23157b401b3c67304a32c8b7adbfd259b4f0c99f10098035fed46247d09feee7dbc05365960b99e1ad50406518d51084f4ea2c692e9359f9b411b4942ca37
   languageName: node
   linkType: hard
 
-"buffer@npm:^5.2.0":
+"buffer@npm:^5.2.0, buffer@npm:^5.4.3":
   version: 5.7.1
   resolution: "buffer@npm:5.7.1"
   dependencies:
@@ -4673,6 +4680,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"css-select@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "css-select@npm:2.1.0"
+  dependencies:
+    boolbase: ^1.0.0
+    css-what: ^3.2.1
+    domutils: ^1.7.0
+    nth-check: ^1.0.2
+  checksum: b534aad04abbd433849d55b93e234b81c1ade4422c638a916fd7163db5a3b07186e92ce43c292d954417c8ce020eb31b8990ed2fb30c9c145c7f2549621e8095
+  languageName: node
+  linkType: hard
+
+"css-tree@npm:^1.0.0-alpha.39":
+  version: 1.1.3
+  resolution: "css-tree@npm:1.1.3"
+  dependencies:
+    mdn-data: 2.0.14
+    source-map: ^0.6.1
+  checksum: 5b1bf44c457f4682feef5d1fccf0758aabaec3b77f264418a022826a0e4c2dc9f2283205223ddba147eba8ee4cb88caa91298b54c4b7e9af345bb820e9a32868
+  languageName: node
+  linkType: hard
+
+"css-what@npm:^3.2.1":
+  version: 3.4.2
+  resolution: "css-what@npm:3.4.2"
+  checksum: f9f258ad625f54485981aac75bed584984310fee33d3ba9a25fbb9e84d5abbf2a13ff8599fd0c13a76f96accc3dc6e569679bf84047fc6c0148268ca8248e008
+  languageName: node
+  linkType: hard
+
 "cssom@npm:^0.4.1":
   version: 0.4.4
   resolution: "cssom@npm:0.4.4"
@@ -4888,10 +4924,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dijkstrajs@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "dijkstrajs@npm:1.0.2"
+  checksum: 5b4ad633ee4cdf34a7b5d42f7388886825680042aed13ef158a9e6c896751af3e1a212b2dd3c65c25e8f1c36022b44f215f7844be4d93d5aeef752b703743870
+  languageName: node
+  linkType: hard
+
+"dom-serializer@npm:0":
+  version: 0.2.2
+  resolution: "dom-serializer@npm:0.2.2"
+  dependencies:
+    domelementtype: ^2.0.1
+    entities: ^2.0.0
+  checksum: 598e05e71b8cdb03424393c0631818b978b9fee2dd18d0215a9ee97a6dee86bddd1dcfae4609c173185a9f1bcde24d4a87e1f0d512d66b76536b21fc3f34fc03
+  languageName: node
+  linkType: hard
+
 "dom-walk@npm:^0.1.0":
   version: 0.1.2
   resolution: "dom-walk@npm:0.1.2"
   checksum: 948c7527f3798cae9d7039cc0e5dc9f013ebd701d7d99478bac79d7d9eb8b81e7b6e836526e21ed9b156466b268e30ea0f2d5b72df955fabec3ce2aa7dc0086e
+  languageName: node
+  linkType: hard
+
+"domelementtype@npm:1":
+  version: 1.3.1
+  resolution: "domelementtype@npm:1.3.1"
+  checksum: a4791788de07071422b2fe63b58cfb89c2507def6864954d0d7a062adb00fc925059856d29c3e48051c8fa2f20147e5d3fb24b1adbc5bdf0f9e99981b53b74c6
+  languageName: node
+  linkType: hard
+
+"domelementtype@npm:^2.0.1":
+  version: 2.2.0
+  resolution: "domelementtype@npm:2.2.0"
+  checksum: 70af22cd69a8e0c0cd4fbbba0459991aacb015f60765050b4a6d1750fd201b4bd4fd1e6922e945200f9cc725cd61be1cd393a3b9b576187759e3b046f33a4a30
   languageName: node
   linkType: hard
 
@@ -4901,6 +4968,16 @@ __metadata:
   dependencies:
     webidl-conversions: ^4.0.2
   checksum: 0a678e600248b8a6f0149cb6a6ddae77d698d16a6fcf39d4228b933d5ac2b9ee657a36b2cd08ea82ec6196da756535bd30b8362f697cc9e564d969e52437fcd8
+  languageName: node
+  linkType: hard
+
+"domutils@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "domutils@npm:1.7.0"
+  dependencies:
+    dom-serializer: 0
+    domelementtype: 1
+  checksum: a5b2f01fb3ff626073e3c3b43fedcff34073fb059b1235ee31cd0b5690d826304f41bc3fd117f95d754a1666ac3a57d224b408d83dd4f1c4525fd5b636d8df6f
   languageName: node
   linkType: hard
 
@@ -4964,6 +5041,13 @@ __metadata:
   dependencies:
     once: ^1.4.0
   checksum: 7da60e458bdb5e16c006a45e85ef3bc1e3791db5ba275b0913258ccddc8899acb9252c4ddbcce87bd1b46e2a3f97315aafb9f0c0330e8aac44defb504a9d3ccd
+  languageName: node
+  linkType: hard
+
+"entities@npm:^2.0.0":
+  version: 2.2.0
+  resolution: "entities@npm:2.2.0"
+  checksum: ebd62621a15a13f4e914322cf8b1d4aeb224fa5365910d8899615835dada8b1349dea77bbcd4db2eea100845de313c46303accafece669d929d64ebcc90f4517
   languageName: node
   linkType: hard
 
@@ -5285,6 +5369,16 @@ __metadata:
     qs: ^6.5.0
     url-parse: ^1.4.4
   checksum: d8eb81f11e86244070d7dbecf62cf0964b50dfd855aed089f6dbe3de3242884865d39ea65e48bafb7870824ca665a22ebe2db713fc89e63d6c6bf014d7315806
+  languageName: node
+  linkType: hard
+
+"expo-media-library@npm:~12.1.2":
+  version: 12.1.2
+  resolution: "expo-media-library@npm:12.1.2"
+  dependencies:
+    "@expo/config-plugins": ^3.0.0
+    expo-modules-core: ~0.2.0
+  checksum: 50748f4fb63424f1cf553c26686b3d9953b73f71a9b67e107c5070c3fa28d348a9a3373ff170062f6189d6b7f9b1478b1afadac034bfd93c5efd1773bfbaa792
   languageName: node
   linkType: hard
 
@@ -6662,6 +6756,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"isarray@npm:^2.0.1":
+  version: 2.0.5
+  resolution: "isarray@npm:2.0.5"
+  checksum: cfb3e907b3c7957fb18e479bbe9102df4e84c5386839b4a33076f38ee31a8934e77d43ff517967fd39192a7c06b894770454886a5ffc8a3ddc36f6b746d70726
+  languageName: node
+  linkType: hard
+
 "isexe@npm:^2.0.0":
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
@@ -7959,6 +8060,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"mdn-data@npm:2.0.14":
+  version: 2.0.14
+  resolution: "mdn-data@npm:2.0.14"
+  checksum: 57a27f585adb0ab978b0229aa2347dfbdb897e340a3cd3547a7de3162680af641bf2cdf185771b3bca29fabf8c46b486a45a4809dd5d9321465c80e6adad98f4
+  languageName: node
+  linkType: hard
+
 "merge-stream@npm:^1.0.1":
   version: 1.0.1
   resolution: "merge-stream@npm:1.0.1"
@@ -8739,6 +8847,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"nth-check@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "nth-check@npm:1.0.2"
+  dependencies:
+    boolbase: ~1.0.0
+  checksum: 88a58b8b6289344749102019422705e8e6fa870d55e4bd4c71f860105ea5b8145ae71657f6edd6df953964081f52d65936a3eec4af1d9ee42122e42d293b2abe
+  languageName: node
+  linkType: hard
+
 "nullthrows@npm:^1.1.1":
   version: 1.1.1
   resolution: "nullthrows@npm:1.1.1"
@@ -9468,6 +9585,23 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"qrcode@npm:^1.4.4":
+  version: 1.4.4
+  resolution: "qrcode@npm:1.4.4"
+  dependencies:
+    buffer: ^5.4.3
+    buffer-alloc: ^1.2.0
+    buffer-from: ^1.1.1
+    dijkstrajs: ^1.0.1
+    isarray: ^2.0.1
+    pngjs: ^3.3.0
+    yargs: ^13.2.4
+  bin:
+    qrcode: ./bin/qrcode
+  checksum: 125b75136305c51c5f5f313d36912ae537c43cc4f35d396ed64fc0567ed78510841a4bac56d8de4126d9479225d2ac991b47e4cc053a7ef38208b162d671b893
+  languageName: node
+  linkType: hard
+
 "qs@npm:^6.5.0":
   version: 6.10.1
   resolution: "qs@npm:6.10.1"
@@ -9612,6 +9746,20 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"react-native-qrcode-svg@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "react-native-qrcode-svg@npm:6.1.1"
+  dependencies:
+    prop-types: ^15.7.2
+    qrcode: ^1.4.4
+  peerDependencies:
+    react: "*"
+    react-native: ">=0.63.4"
+    react-native-svg: ^12.1.0
+  checksum: 373f2a4dcf06323fed037f28cf93e320b2f18a10ff62ba136371c2c6b08bd5f81cb3adb413e9b7a3025c3f57d26bd64671afa021594dba156f6b14031d47c678
+  languageName: node
+  linkType: hard
+
 "react-native-reanimated@npm:~2.2.0":
   version: 2.2.0
   resolution: "react-native-reanimated@npm:2.2.0"
@@ -9647,6 +9795,29 @@ fsevents@^2.1.2:
     react: "*"
     react-native: "*"
   checksum: 89294a13c7c52ee7eed1840b551e5a7f9ba6cf1dfad8a2418a1a0988b39e05adcc1f1858ed8e0f8c11e0ad54a5693fb4985f0804858cf44d4f7e6d6c4d508f1c
+  languageName: node
+  linkType: hard
+
+"react-native-svg@npm:^12.1.1":
+  version: 12.2.0
+  resolution: "react-native-svg@npm:12.2.0"
+  dependencies:
+    css-select: ^2.1.0
+    css-tree: ^1.0.0-alpha.39
+  peerDependencies:
+    react: "*"
+    react-native: ">=0.50.0"
+  checksum: 2f950bf8e9efcfce5c0148d25acd1bc96b7abdd4ee6a39a664e23281f64a8bed1a8156382b1ef5d86183f83945f9ac21c49231281a9bfd500b9338cb977e144e
+  languageName: node
+  linkType: hard
+
+"react-native-view-shot@npm:3.1.2":
+  version: 3.1.2
+  resolution: "react-native-view-shot@npm:3.1.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 3a6523eacca6f82477fefe624d7f485689214bd347dae0767853d61029d457905a11b2bc6990750b3ef25b05310d119eecc34021e41649100ddadeff4558347a
   languageName: node
   linkType: hard
 
@@ -10111,6 +10282,7 @@ resolve@1.1.7:
     expo-constants: ~11.0.1
     expo-font: ~9.2.1
     expo-linking: ~2.3.1
+    expo-media-library: ~12.1.2
     expo-splash-screen: ~0.11.2
     expo-status-bar: ~1.0.4
     expo-web-browser: ~9.2.0
@@ -10121,9 +10293,12 @@ resolve@1.1.7:
     react-native: "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz"
     react-native-gesture-handler: ~1.10.2
     react-native-paper: ^4.9.2
+    react-native-qrcode-svg: ^6.1.1
     react-native-reanimated: ~2.2.0
     react-native-safe-area-context: 3.2.0
     react-native-screens: ~3.4.0
+    react-native-svg: ^12.1.1
+    react-native-view-shot: 3.1.2
     react-native-web: ^0.17.1
     typescript: ~4.0.0
   languageName: unknown
@@ -11968,6 +12143,16 @@ typescript@~4.0.0:
   languageName: node
   linkType: hard
 
+"yargs-parser@npm:^13.1.2":
+  version: 13.1.2
+  resolution: "yargs-parser@npm:13.1.2"
+  dependencies:
+    camelcase: ^5.0.0
+    decamelize: ^1.2.0
+  checksum: 82d3b7ab99085d70a5121399ad407d2b98d296538bf7012ac2ce044a61160ca891ea617de6374699d81955d9a61c36a3b2a6a51588e38f710bd211ce2e63c33c
+  languageName: node
+  linkType: hard
+
 "yargs-parser@npm:^15.0.1":
   version: 15.0.3
   resolution: "yargs-parser@npm:15.0.3"
@@ -11985,6 +12170,24 @@ typescript@~4.0.0:
     camelcase: ^5.0.0
     decamelize: ^1.2.0
   checksum: 33871721679053cc38165afc6356c06c3e820459589b5db78f315886105070eb90cbb583cd6515fa4231937d60c80262ca2b7c486d5942576802446318a39597
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^13.2.4":
+  version: 13.3.2
+  resolution: "yargs@npm:13.3.2"
+  dependencies:
+    cliui: ^5.0.0
+    find-up: ^3.0.0
+    get-caller-file: ^2.0.1
+    require-directory: ^2.1.1
+    require-main-filename: ^2.0.0
+    set-blocking: ^2.0.0
+    string-width: ^3.0.0
+    which-module: ^2.0.0
+    y18n: ^4.0.0
+    yargs-parser: ^13.1.2
+  checksum: 92c612cd14a9217d7421ae4f42bc7c460472633bfc2e45f7f86cd614a61a845670d3bac7c2228c39df7fcecce0b8c12b2af65c785b1f757de974dcf84b5074f9
   languageName: node
   linkType: hard
 
