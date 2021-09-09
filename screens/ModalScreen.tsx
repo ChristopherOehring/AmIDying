@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform, Pressable, StyleSheet, Image } from 'react-native';
 import { Title, Card, Paragraph, Button, useTheme, Text, Portal } from "react-native-paper";
-import { format } from "date-fns";
+import { format, formatDistance } from "date-fns";
 import EditScreenInfo from '../components/EditScreenInfo';
 import { View, } from '../components/Themed';
 
@@ -33,34 +33,68 @@ const DATA = [
 export default function ModalScreen({ navigation, route }: any) {
   const { item } = route.params;
   const theme = useTheme();
+  
   return (
     <View style={{
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center',
+      //justifyContent: 'center',
       backgroundColor: theme?.colors.background,
     }}>
-      <Image source={{uri: 'https://www.collinsdictionary.com/images/full/plant_108417266.jpg'}}
-            style={{width: 200, height: 200}} />
-
-      {/* CHANGE IMAGE BUTTON */}
-      <Text theme={theme}>
-        Time till I slowly die:
-      </Text>
-      <Text theme={theme}>
-        15 days
-      </Text>
+      <Title
+        style={{
+          fontSize: 40,
+          paddingTop: 40,
+        }}>
+        {item.name}
+      </Title>
+      <Image source={require("../assets/images/placeholder_plant.png")}
+            style={{ height: 300}} />
+      <View style={{
+        flexDirection: "row",
+        backgroundColor: theme?.colors.background,
+        justifyContent: "center",
+      }}>
+        <Text 
+          theme={theme}
+          style={{
+            marginTop: 10,
+            width: 200,
+            textAlignVertical: "center",
+            paddingLeft: 20,
+            fontSize: 20,
+          }}>
+          Time till I slowly die:
+        </Text>
+        <Text 
+          theme={theme}
+          style={{
+            marginTop: 10,
+            width: 100,
+            textAlignVertical: "center",
+            fontSize: 20,
+            paddingLeft: 15,      
+          }}>
+          15 days
+        </Text>
+      </View>
       <Button 
         theme={theme} 
+        style={{
+          marginTop: 15
+        }}
         mode="contained"
         onPress={() => console.log("Button Pressed!")}>
         watered today!
       </Button>
       <Button
+        style={{
+          marginTop: 10
+        }}
         theme={theme}
         mode="contained"
         onPress={() => navigation.navigate("QRCode",{item: item,})}>
-        Press to save QR-Code
+        Show QR-Code
       </Button>
     </View>
   );
