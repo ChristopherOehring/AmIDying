@@ -5,13 +5,20 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { useForm, Controller } from "react-hook-form";
 import { TextInput, Button, useTheme, TouchableRipple, Switch, Surface  } from 'react-native-paper';
+import { UsernameContext } from '../components/username-context';
 import { PreferencesContext } from '../hooks/PreferencesContext';
 
 export default function TabTwoScreen() {
   const { control, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  //@ts-ignore
+  const {username, setUsername} = React.useContext(UsernameContext);
+  const onSubmit = (data: any) => {
+    setUsername(data.name);
+    console.log(`setting name to \"${data.name}\"`);
+  };
   const theme = useTheme();
   const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
+
   return (
     <View style={{
       flex: 0,
@@ -57,7 +64,7 @@ export default function TabTwoScreen() {
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
             mode="flat"
-            label="Your Name"
+            label={username}
             style={{
               position: "relative",
               height: 50,

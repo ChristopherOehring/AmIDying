@@ -5,6 +5,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { PreferencesContext } from './hooks/PreferencesContext';
+import { UsernameController } from './components/username-context';
 
 import {
   NavigationContainer,
@@ -55,13 +56,15 @@ export default function App() {
     return null;
   } else {
     return (
-      <PreferencesContext.Provider value={preferences}>
-        <PaperProvider theme={theme}>
-          <SafeAreaProvider>
-            <Navigation theme={theme} />
-          </SafeAreaProvider>
-        </PaperProvider>
-      </PreferencesContext.Provider>
+      <UsernameController>
+        <PreferencesContext.Provider value={preferences}>
+          <PaperProvider theme={theme}>
+            <SafeAreaProvider>
+              <Navigation theme={theme} />
+            </SafeAreaProvider>
+          </PaperProvider>
+        </PreferencesContext.Provider>
+      </UsernameController>
     );
   }
 }
