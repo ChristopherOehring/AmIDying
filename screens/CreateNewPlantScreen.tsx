@@ -13,17 +13,21 @@ export default function CreateNewPlantScreen({ navigation }: any) {
   const { control, handleSubmit, formState: { errors } } = useForm();
   //@ts-ignore
   var {plants, setPlants} = usePlants();
+
   const onSubmit = (data: any) => {
+    console.log('CreateNewPlant');
     console.log("A Plant creation form was submitted:", data);
     const newPlant = new Plant(
       uuid.v4().toString(), data.name, data.water_freq, null
     );
-    var plantList = plants
-    console.log("Adding Plant:", newPlant, "to", plantList)
-    plantList.push(newPlant)
-    setPlants(plantList)
-    console.log("Successfully added Plant!")
+    var plantList = plants;
+    console.log("Adding Plant:", newPlant, "to", plantList);
+    plantList.push(newPlant);
+    setPlants(plantList);
+    console.log("Successfully added Plant!");
+    navigation.navigate('Root');
   }
+  
   const theme = useTheme();
   // const onSubmit = (data: any) => alert(`data ${data}`);
 
@@ -85,7 +89,11 @@ export default function CreateNewPlantScreen({ navigation }: any) {
 
       {errors.watered && <Text>This has to be a number!</Text>}
 
-      <Button mode="contained" theme={theme} onPress={() => {handleSubmit(onSubmit), navigation.replace("Root")}}>Submit</Button>
+      <Button mode="contained" 
+        theme={theme} 
+        onPress={handleSubmit(onSubmit)}>
+        Submit
+      </Button>
     </View>
   );
 }
