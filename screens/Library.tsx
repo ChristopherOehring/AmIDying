@@ -3,7 +3,7 @@ import { StyleSheet, FlatList, View, StatusBar } from "react-native";
 import { Title, Card, Paragraph, Button, useTheme, } from "react-native-paper";
 import { usePlants } from "../components/usePlants";
 import { Plant } from "../components/plant";
-import { getPlant } from "../components/DBController";
+import { getPlant, synchronizePlants } from "../components/DBController";
 import { tupleExpression } from "@babel/types";
 
 function createCard(plant: Plant, navigation: any) {
@@ -38,8 +38,10 @@ function Library({ navigation}: any) {
     const [refreshing, setRefreshing] = React.useState(false);
     const handleRefresh = () => {
         setRefreshing(true)
-        getPlant("6a2c2de0-e0ee-485d-9cff-b41ebf61376a")
-        setRefreshing(false)
+        console.log("Synchronizing(1/3)")
+        synchronizePlants(plants)
+            .then((syncedPlants) => setPlants(syncedPlants))
+            .then(() => setRefreshing(false))
     }
 
     return (

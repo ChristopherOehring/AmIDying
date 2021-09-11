@@ -6,7 +6,6 @@ import { useForm, Controller } from "react-hook-form";
 import { Text, View, } from '../components/Themed';
 import { usePlants } from '../components/usePlants';
 import { Plant } from '../components/plant';
-import { addPlant, sendPlant } from '../components/DBController';
 import uuid  from 'react-native-uuid';
 
 

@@ -5,7 +5,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { PreferencesContext } from './hooks/PreferencesContext';
-import { UsernameController } from './components/username-context';
+import { UsernameController, useUsername } from './components/username-context';
 import { useForm, Controller } from "react-hook-form";
 
 
@@ -119,15 +119,13 @@ function ModalScreen() {
 
   //TODO Chris
   let is_username_set = false;
-  let set_username = (name: string) => {
-    console.log("name: ",name)
-  };
-
+  //@ts-ignore
+  let {username, setUsername} = useUsername();
   const { control, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data: any) => {set_username(data.name), hideModal()};
+  const onSubmit = (data: any) => {setUsername(data.name), hideModal()};
 
   useEffect(() => {
-    if(!is_username_set){
+    if(username == null){
       showModal()
     }
   }, []);
@@ -175,8 +173,8 @@ function ModalScreen() {
           onPress={handleSubmit(onSubmit)}>
           Submit
         </Button>
-        <Button onPress={() => {set_username("Anonymous"), hideModal()}}>
-          Anonymous
+        <Button onPress={() => {setUsername("Anonymous User"), hideModal()}}>
+          Stay Anonymous
         </Button>
       </Modal>
     </Portal>

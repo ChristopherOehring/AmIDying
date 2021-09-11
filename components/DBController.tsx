@@ -4,6 +4,7 @@ import uuid from 'react-native-uuid'
 import { Plant, WateringEvent } from './plant';
 
 export function sendPlant(plant:Plant):Promise<boolean>{
+    console.log("sending: ", plant.id)
     var requests:Promise<Response>[] = [];
     requests.push(
         fetch(
@@ -54,17 +55,20 @@ export function getPlant(id:string) {
         }
     ).then((response) => response.json())
     .then((body) => {
-        console.log(body)
         try {
             const id = body.plant.ID;
             const name = body.plant.name;
             const water_freq = body.plant.water_freq; 
             var events = body.event.Items;
-            const latest_event = events[events.length-1];
-            const latest_event_name = latest_event.name;
-            const latest_event_date = latest_event.date;
-            var event = new WateringEvent(
-                latest_event_date, latest_event_name)
+            if(body.event.Count > 0) {
+                const latest_event = events[events.length-1];
+                const latest_event_name = latest_event.name;
+                const latest_event_date = latest_event.date;
+                var event:WateringEvent|null = new WateringEvent(
+                    latest_event_date, latest_event_name);
+            } else {
+                var event:WateringEvent|null = null;
+            }
             return new Plant(id, name, water_freq, event)
         } catch (err) {
             console.error("could not parse results:")
@@ -76,24 +80,20 @@ export function getPlant(id:string) {
 
 }
 
-export function synchronizePlants(plants:Plant[]) {
+export async function synchronizePlants(plants:Plant[]) {
     var result = [];
+    console.log(plants)
+    console.log("Synchronizing(2/3)")
     for(const plant of plants) {
         if(plant.modified) {
             sendPlant(plant);
             result.push(plant);
         } else {
-            const newPlant = getPlant(plant.id);
-            result.push(newPlant);
+            const newPlant = await getPlant(plant.id);
+            if (newPlant) result.push(newPlant);
+            else result.push(plant);
         }
     }
-}
-
-export function addPlant(newPlant:Plant, plants:Plant[]) {
-    return sendPlant(newPlant)
-        .then(() => {
-            console.log(newPlant)
-            plants.push(newPlant);
-            return plants;
-        })
+    console.log("Synchronizing(3/3)")
+    return plants
 }

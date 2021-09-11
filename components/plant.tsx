@@ -7,12 +7,17 @@ export class Plant {
     water_freq:number;
     modified: boolean;
 
-    constructor(id:string, name:string, water_freq:number, last_watered:WateringEvent|null, 
+    constructor(
+        id:string, 
+        name:string, 
+        water_freq:number, 
+        last_watered:WateringEvent|null, 
+        modified:boolean=true
         ){
         this.id = id;
         this.name = name;
         this.last_watered = last_watered;
-        this.modified = true;
+        this.modified = modified;
         this.water_freq = water_freq;
     }
 }

@@ -36,10 +36,12 @@ export function PlantController({ children }:any):any {
   const [plants, setPlants_] = React.useState(emptyList);
 
   useEffect(() => {
+    console.log("loading Plants...")
     AsyncStorage.getItem('AM_I_DYING::Plants').then((value) => {
       if (value) {
         // setPlants(data)
         setPlants(JSON.parse(value));
+        console.log(value)
       } else {
         //load example data
         //setPlants(data);
