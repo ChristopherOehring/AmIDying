@@ -73,16 +73,15 @@ export default function TabTwoScreen() {
         defaultValue=""/>
 
       {errors.name && <Text>This is required.</Text>}
-      <Pressable onPress={handleSubmit(onSubmit)}>
-        <Button 
-          icon="arrow-collapse-down"
-          mode="contained"
-          style={{
-            marginTop: 20
-          }}>
-            Save
-        </Button>
-      </Pressable>
+      <Button 
+        onPress={handleSubmit(onSubmit)}
+        icon="arrow-collapse-down"
+        mode="contained"
+        style={{
+          marginTop: 20
+        }}>
+          Save
+      </Button>
       {/* <Button 
         title="Save" 
         onPress={handleSubmit(onSubmit)}

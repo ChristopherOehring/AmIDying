@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { PreferencesContext } from './hooks/PreferencesContext';
+import { useForm, Controller } from "react-hook-form";
+
 
 import {
   NavigationContainer,
@@ -16,6 +18,13 @@ import {
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
   Provider as PaperProvider,
+  Portal,
+  Modal,
+  Text,
+  Button,
+  useTheme,
+  TextInput,
+  Title,
 } from 'react-native-paper';
 
 import merge from 'deepmerge'
@@ -58,6 +67,7 @@ export default function App() {
       <PreferencesContext.Provider value={preferences}>
         <PaperProvider theme={theme}>
           <SafeAreaProvider>
+            <ModalScreen/>
             <Navigation theme={theme} />
           </SafeAreaProvider>
         </PaperProvider>
@@ -89,4 +99,80 @@ const Lighttheme = {
   surface: "#ffffff",
   disabled: "#717171"
   },
+}
+
+
+function ModalScreen() {
+  let theme = useTheme()
+
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {backgroundColor: theme?.colors.surface, padding: 20};
+
+  //TODO Chris
+  let is_username_set = false;
+  let set_username = (name: string) => {
+    console.log("name: ",name)
+  };
+
+  const { control, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = (data: any) => {set_username(data.name), hideModal()};
+
+  useEffect(() => {
+    if(!is_username_set){
+      showModal()
+    }
+  }, []);
+
+  return(
+    <Portal>
+      <Modal visible={visible} contentContainerStyle={containerStyle}>
+        <Title>
+          Welcome to AmIDying!
+        </Title>
+        <Text>
+          Set your username first:
+        </Text>
+        <Controller
+          control={control}
+          rules={{
+            maxLength: 100,
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              mode="flat"
+              label="Your Name"
+              style={{
+                position: "relative",
+                height: 50,
+                marginTop: 30
+              }}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              left={<TextInput.Icon name="fountain-pen-tip" />}
+              />
+          )}
+          name="name"
+          defaultValue=""/>
+
+        {errors.watered && <Text>This has to be a number!</Text>}
+
+        <Button mode="contained" 
+          style={{
+            marginTop: 20,
+          }}
+          theme={theme} 
+          onPress={handleSubmit(onSubmit)}>
+          Submit
+        </Button>
+        <Button onPress={() => {set_username("Anonymous"), hideModal()}}>
+          Anonymous
+        </Button>
+      </Modal>
+    </Portal>
+  )
 }
