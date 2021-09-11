@@ -51,7 +51,7 @@ function RootNavigator() {
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} options={{
           headerStyle:{backgroundColor: theme?.colors.surface},
-          title:"detail view"
+          title:"Detail View"
         }}/>
         <Stack.Screen name="NewPlantButton" component={NewPlantButtonScreen} options={{headerStyle:{backgroundColor: theme?.colors.surface}}}/>
         <Stack.Screen name="CreateNewPlant" component={CreateNewPlantScreen} options={{

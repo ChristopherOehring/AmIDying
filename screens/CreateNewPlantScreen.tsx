@@ -86,7 +86,7 @@ export default function CreateNewPlantScreen({ navigation }: any) {
 
       {errors.watered && <Text>This has to be a number!</Text>}
 
-      <Button mode="contained" theme={theme} onPress={handleSubmit(onSubmit)}>Submit</Button>
+      <Button mode="contained" theme={theme} onPress={() => {handleSubmit(onSubmit), navigation.replace("Root")}}>Submit</Button>
     </View>
   );
 }
