@@ -1,16 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import * as React from 'react';
-import { Platform, StyleSheet, } from 'react-native';
-import { Title, Card, Paragraph, TextInput, useTheme, Button  } from "react-native-paper";
+import React from 'react';
+import { StyleSheet, } from 'react-native';
+import { TextInput, useTheme, Button  } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, } from '../components/Themed';
+import { usePlants } from '../components/usePlants';
+import { Plant } from '../components/plant';
+import { addPlant, sendPlant } from '../components/DBController';
+import uuid  from 'react-native-uuid';
 
 
 export default function CreateNewPlantScreen({ navigation }: any) {
   const { control, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  //@ts-ignore
+  var {plants, setPlants} = usePlants();
+  const onSubmit = (data: any) => {
+    console.log("A Plant creation form was submitted:", data);
+    const newPlant = new Plant(
+      uuid.v4().toString(), data.name, data.water_freq, null
+    );
+    var plantList = plants
+    console.log("Adding Plant:", newPlant, "to", plantList)
+    plantList.push(newPlant)
+    setPlants(plantList)
+    console.log("Successfully added Plant!")
+  }
   const theme = useTheme();
   // const onSubmit = (data: any) => alert(`data ${data}`);
 
@@ -68,7 +82,7 @@ export default function CreateNewPlantScreen({ navigation }: any) {
             value={value}
             left={<TextInput.Icon name="water" />}/>
         )}
-        name="watered"/>
+        name="water_freq"/>
 
       {errors.watered && <Text>This has to be a number!</Text>}
 

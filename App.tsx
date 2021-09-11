@@ -20,6 +20,7 @@ import {
 } from 'react-native-paper';
 
 import merge from 'deepmerge'
+import { PlantController } from './components/usePlants';
 
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
@@ -56,15 +57,17 @@ export default function App() {
     return null;
   } else {
     return (
-      <UsernameController>
-        <PreferencesContext.Provider value={preferences}>
-          <PaperProvider theme={theme}>
-            <SafeAreaProvider>
-              <Navigation theme={theme} />
-            </SafeAreaProvider>
-          </PaperProvider>
-        </PreferencesContext.Provider>
-      </UsernameController>
+      <PlantController>   
+        <UsernameController>
+          <PreferencesContext.Provider value={preferences}>
+            <PaperProvider theme={theme}>
+              <SafeAreaProvider>
+                <Navigation theme={theme} />
+              </SafeAreaProvider>
+            </PaperProvider>
+          </PreferencesContext.Provider>
+        </UsernameController>
+      </PlantController>
     );
   }
 }

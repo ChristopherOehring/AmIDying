@@ -1,10 +1,9 @@
-import setItem from '@react-native-async-storage/async-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createContext, useContext, useEffect } from 'react';
+import { createContext, useEffect } from 'react';
 import React from 'react';
 
-export const UsernameContext = createContext(null);
-
+const UsernameContext = createContext(null);
+export const useUsername = () => React.useContext(UsernameContext);
 export function UsernameController({ children }:any):any {
   const [username, setUsername] = React.useState('');
 
@@ -20,6 +19,7 @@ export function UsernameController({ children }:any):any {
 
   useEffect(() => {
     if (username !== null) {
+      console.log("saving username:", username)
       AsyncStorage.setItem('AM_I_DYING::USERNAME', username);
     }
   }, [username]);
