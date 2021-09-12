@@ -50,7 +50,7 @@ export default function CreateNewPlantScreen({ navigation }: any) {
               style={{
                 position: "relative",
                 height: 50,
-                width: 200,
+                width: 250,
                 marginTop: 100,
               }}
               onBlur={onBlur}
@@ -72,11 +72,11 @@ export default function CreateNewPlantScreen({ navigation }: any) {
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
             mode="outlined"
-            label="Watering interval"
+            label="Watering interval (days)"
             style={{
               position: "relative",
               height: 50,
-              width: 200,
+              width: 250,
               marginTop: 10,
               marginBottom: 10,
             }}
