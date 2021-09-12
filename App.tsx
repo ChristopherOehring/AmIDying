@@ -126,7 +126,7 @@ function ModalScreen() {
   const onSubmit = (data: any) => {setUsername(data.name), hideModal()};
 
   useEffect(() => {
-    if(username == null){
+    if(username == ''){
       showModal()
     }
   }, []);
