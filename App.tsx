@@ -84,6 +84,7 @@ export default function App() {
 
 const Darktheme = {
   ...PaperDarkTheme,
+  mode: "exact",
   // roundness: 2,
   colors: {
   ...PaperDarkTheme.colors,
