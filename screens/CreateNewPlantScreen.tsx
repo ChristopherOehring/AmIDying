@@ -7,6 +7,7 @@ import { Text, View, } from '../components/Themed';
 import { usePlants } from '../components/usePlants';
 import { Plant } from '../components/plant';
 import uuid  from 'react-native-uuid';
+import { sendPlant } from '../components/DBController';
 
 
 export default function CreateNewPlantScreen({ navigation }: any) {
@@ -26,6 +27,13 @@ export default function CreateNewPlantScreen({ navigation }: any) {
     setPlants(plantList);
     console.log("Successfully added Plant!");
     navigation.replace('Root');  
+    const failed = () => {
+        alert("We could not send your Plant to the server. \
+        Please check your internet connection, or try again later")
+      }
+    sendPlant(newPlant)
+      .then((success:boolean) => {if(!success) failed(); })
+      .catch(failed)
   }
   
   const theme = useTheme();

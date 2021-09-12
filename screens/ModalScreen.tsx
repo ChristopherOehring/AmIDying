@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Image } from 'react-native';
-import { Title, Button, useTheme, Text } from "react-native-paper";
+import { StyleSheet, Image, Dimensions, Alert } from 'react-native';
+import { Title, Button, useTheme, Text, Banner } from "react-native-paper";
+import { sendPlant } from '../components/DBController';
 import { Plant, WateringEvent } from '../components/plant';
 import { View, } from '../components/Themed';
 import { usePlants } from '../components/usePlants';
@@ -11,13 +12,13 @@ export default function ModalScreen({ navigation, route }: any) {
   console.log(item)
   var im_dying_msg = "";
   var im_dying_time = "";
+
+  //This calculates the message about when a plant is going to die
   const calc_time = () => {
     if(item.last_watered){
       var last_watered = new Date(item.last_watered.date);
     
       let currDate = new Date()
-      // const diffTime = currDate. - last_watered;
-      // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       //@ts-ignore
       let diff_millisec = currDate - last_watered
       let diff_days = Math.ceil(diff_millisec / (1000 * 60 * 60 * 24));
@@ -40,7 +41,8 @@ export default function ModalScreen({ navigation, route }: any) {
   const {username, setUsername} = useUsername();
   //@ts-ignore
   const {plants, setPlants} = usePlants();
-  const [re, setRe] = React.useState(null);
+
+  // Function which is called when the user has watered a plant
   const watered_today = () => {
     let event = new WateringEvent(Date.now(), username)
     var plantList = [];
@@ -55,20 +57,48 @@ export default function ModalScreen({ navigation, route }: any) {
     //@ts-ignore
     navigation.navigate('Root')
   }
-
+  
+  // Function to delete this Plant from the app
   const remove = () => {
-    var plantList = [];
-    for(var plant of plants) {
-      if(plant.id != item.id){
-        plantList.push(plant)
-      }
-    }
-    setPlants(plantList)
+    var plantList:Plant[] = [];
+    Alert.alert(
+      "Deleting Plant",
+      "Are you shure you want to delet this plant from your device?",
+      [
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            for(var plant of plants) {
+              if(plant.id != item.id){
+                plantList.push(plant)
+              }
+            }
+            setPlants(plantList)
+            navigation.replace('Root');
+          }
+        },
+        { text: "cancel", style: "cancel"}
+      ] 
+      );
+    
     navigation.navigate('Root')
   }
 
   const theme = useTheme();
   
+  const [bannerVisible, setBannerVisible] = React.useState(item.modified);
+  // sync banner
+  const sync = () => {
+    setBannerVisible(false);
+    const failed = () => {
+      alert("We could not send your Plant to the server. \
+      Please check your internet connection, or try again later")
+      }
+    sendPlant(item)
+      .then((success:boolean) => {if(!success) failed(); })
+      .catch(failed)
+  }
   return (
     <View style={{
       flex: 1,
@@ -76,10 +106,41 @@ export default function ModalScreen({ navigation, route }: any) {
       //justifyContent: 'center',
       backgroundColor: theme?.colors.background,
     }}>
+      <Banner
+        visible={bannerVisible}
+        theme={theme}
+        contentStyle={{
+          width: Dimensions.get('window').width,
+        }}
+        style={{
+        }}
+        actions={[
+          {
+            label: 'Synchronize',
+            onPress: () => sync()
+          },
+          {
+            label: 'dismiss',
+            onPress: () => setBannerVisible(false)
+          }
+        ]}
+        icon={({size}) => (
+          <Image 
+            source={require('../assets/images/Refresh_icon.png')}
+            style={{
+              width: 20,
+              height: 20,
+            }}
+          />
+        )}
+        >
+        This plant has unsynchronized changes
+      </Banner>
+
       <Title
         style={{
           fontSize: 40,
-          paddingTop: 40,
+          paddingTop: 20,
         }}>
         {item.name}
       </Title>
@@ -164,4 +225,9 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  text: {
+    textAlignVertical: "center",
+    textAlign: "center",
+    fontSize: 20,
+  }
 });

@@ -39,7 +39,14 @@ export default function BarCodeRefScreen({ navigation }: any) {
       var newPlant = await getPlant(data);
       console.log("found Plant: ", newPlant)
       setLoading(false)
-      if(newPlant){
+      let already_in_library = false;
+      for(const plant of plants){
+        if(plant.id == data) already_in_library = true;
+      }
+      if(already_in_library) {
+        alert("You already have this plant in your library!")
+      }
+      else if(newPlant){
         var plantList:Plant[] = plants;
         Alert.alert(
           "Plant found!",
