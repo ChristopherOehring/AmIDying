@@ -69,6 +69,7 @@ export default function App() {
       <PlantController>   
         <UsernameController>
           <PreferencesContext.Provider value={preferences}>
+            {/* @ts-ignore */}
             <PaperProvider theme={theme}>
               <SafeAreaProvider>
                 <ModalScreen/>
