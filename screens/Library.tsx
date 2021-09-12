@@ -1,10 +1,9 @@
-import React, { Component, } from "react";
-import { StyleSheet, FlatList, View, StatusBar } from "react-native";
-import { Title, Card, Paragraph, Button, useTheme, } from "react-native-paper";
+import React from "react";
+import { StyleSheet, FlatList, View, StatusBar, Dimensions } from "react-native";
+import { Title, Card, Paragraph, useTheme, TextInput, } from "react-native-paper";
 import { usePlants } from "../components/usePlants";
 import { Plant } from "../components/plant";
-import { getPlant, synchronizePlants } from "../components/DBController";
-import { tupleExpression } from "@babel/types";
+import { synchronizePlants } from "../components/DBController";
 
 function createCard(plant: Plant, navigation: any) {
     //const theme = useTheme();
@@ -32,6 +31,7 @@ function createCard(plant: Plant, navigation: any) {
 }
 
 function Library({ navigation}: any) {
+    console.log("Reloading Library...")
     const theme = useTheme();
     //@ts-ignore
     const {plants, setPlants} = usePlants();
@@ -68,13 +68,12 @@ export default Library
 const styles = StyleSheet.create({
     container: {
         flex: 0,
-        //backgroundColor: theme?.colors.background,
         marginTop: StatusBar.currentHeight || 0,
     },
     Card: {
         padding: 10,
         marginVertical: 8,
-        marginHorizontal: 16,
+        width:Dimensions.get('window').width - 20,
     },
     title: {
         fontSize: 32,

@@ -1,19 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Platform, } from 'react-native';
+import { Platform, Alert} from 'react-native';
 //import { Title, Card, Paragraph, Button, } from "react-native-paper";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { StyleSheet } from 'react-native';
+import uuid from 'react-native-uuid'
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, } from '../components/Themed';
 import { useTheme, Button } from 'react-native-paper';
+import { getPlant } from '../components/DBController';
+import { usePlants } from '../components/usePlants';
+import { Plant } from '../components/plant';
 
 export default function BarCodeRefScreen({ navigation }: any) {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
+  const [loading, setLoading] = useState(false);
   const theme = useTheme();
+  //@ts-ignore
+  const {plants, setPlants} = usePlants();
 
   useEffect(() => {
     (async () => {
@@ -22,10 +28,45 @@ export default function BarCodeRefScreen({ navigation }: any) {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }:any) => {
+  const handleBarCodeScanned = async ({ type, data }:any) => {
     setScanned(true);
-    // TODO: Processing "data" 
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    console.log("Scanned code:", data)
+    if(/^[0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$/i
+      .test(data))
+    {
+      console.log("found qr-code with id:", data)
+      setLoading(true)
+      var newPlant = await getPlant(data);
+      console.log("found Plant: ", newPlant)
+      setLoading(false)
+      if(newPlant){
+        var plantList:Plant[] = plants;
+        Alert.alert(
+          "Plant found!",
+          "Name: " + newPlant.name,
+          [
+            {
+              text: "Add",
+              onPress: () => {
+                if(newPlant == null) throw "Plant is null. This should not be possible."
+                plantList.push(newPlant);
+                setPlants(plantList);
+                navigation.replace('Root');
+              }
+            },
+            { text: "discard", style: "cancel"}
+          ] 
+          );
+      } else {
+        console.log("could not find plant")
+        alert('could not find this plant in the database')
+        setScanned(false)
+      }
+    } else {
+      setScanned(false)
+      console.log(data, 'is not a uuid')
+    }
+    setScanned(false)
   };
 
   if (hasPermission === null) {
@@ -46,7 +87,17 @@ export default function BarCodeRefScreen({ navigation }: any) {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button mode="contained" theme={theme} onPress={() => {setScanned(false); navigation.replace("Root")}}>Add Plant</Button>}
+      {/* {scanned && 
+        <Button 
+          mode="contained" 
+          theme={theme} 
+          onPress={() => {
+            setScanned(false); 
+            navigation.replace("Root")}
+          }
+        >
+          Add Plant
+        </Button>} */}
     </View>
   );
 }

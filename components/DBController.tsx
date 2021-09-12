@@ -56,9 +56,10 @@ export function getPlant(id:string) {
     ).then((response) => response.json())
     .then((body) => {
         try {
-            const id = body.plant.ID;
-            const name = body.plant.name;
-            const water_freq = body.plant.water_freq; 
+            const plant = body.plant.Items[0]
+            const id = plant.ID;
+            const name = plant.name;
+            const water_freq = plant.water_freq; 
             var events = body.event.Items;
             if(body.event.Count > 0) {
                 const latest_event = events[events.length-1];
@@ -85,14 +86,13 @@ export async function synchronizePlants(plants:Plant[]) {
     console.log(plants)
     console.log("Synchronizing(2/3)")
     for(const plant of plants) {
+        var newPlant:Plant|null = plant
         if(plant.modified) {
             sendPlant(plant);
-            result.push(plant);
-        } else {
-            const newPlant = await getPlant(plant.id);
-            if (newPlant) result.push(newPlant);
-            else result.push(plant);
         }
+        newPlant = await getPlant(plant.id);
+        if (newPlant) result.push(newPlant);
+        else result.push(plant);
     }
     console.log("Synchronizing(3/3)")
     return plants
