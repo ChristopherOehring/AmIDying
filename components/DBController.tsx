@@ -61,6 +61,7 @@ export function getPlant(id:string) {
             const name = plant.name;
             const water_freq = plant.water_freq; 
             var events = body.event.Items;
+            console.log(events)
             if(body.event.Count > 0) {
                 const latest_event = events[events.length-1];
                 const latest_event_name = latest_event.name;
@@ -70,7 +71,7 @@ export function getPlant(id:string) {
             } else {
                 var event:WateringEvent|null = null;
             }
-            return new Plant(id, name, water_freq, event)
+            return new Plant(id, name, water_freq, event, false)
         } catch (err) {
             console.error("could not parse results:")
             console.error(err)

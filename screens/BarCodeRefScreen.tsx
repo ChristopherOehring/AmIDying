@@ -29,6 +29,7 @@ export default function BarCodeRefScreen({ navigation }: any) {
   }, []);
 
   const handleBarCodeScanned = async ({ type, data }:any) => {
+    if(scanned) return;
     setScanned(true);
     console.log("Scanned code:", data)
     if(/^[0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$/i
@@ -59,11 +60,13 @@ export default function BarCodeRefScreen({ navigation }: any) {
                 plantList.push(newPlant);
                 setPlants(plantList);
                 navigation.replace('Root');
+                setScanned(false);
               }
             },
-            { text: "discard", style: "cancel"}
+            { text: "discard", style: "cancel", onPress:() => setScanned(false)}
           ] 
           );
+        return;
       } else {
         console.log("could not find plant")
         alert('could not find this plant in the database')
