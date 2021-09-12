@@ -25,7 +25,7 @@ export default function CreateNewPlantScreen({ navigation }: any) {
     plantList.push(newPlant);
     setPlants(plantList);
     console.log("Successfully added Plant!");
-    navigation.navigate('Root');
+    navigation.replace('Root');  
   }
   
   const theme = useTheme();
