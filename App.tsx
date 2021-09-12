@@ -72,7 +72,7 @@ export default function App() {
             {/* @ts-ignore */}
             <PaperProvider theme={theme}>
               <SafeAreaProvider>
-                <ModalScreen/>
+                <ModalScreen theme={theme} />
                 <Navigation theme={theme} />
               </SafeAreaProvider>
             </PaperProvider>
@@ -110,7 +110,7 @@ const Lighttheme = {
 }
 
 
-function ModalScreen() {
+function ModalScreen(props:any) {
   let theme = useTheme()
 
   const [visible, setVisible] = React.useState(false);
@@ -119,18 +119,27 @@ function ModalScreen() {
   const hideModal = () => setVisible(false);
   const containerStyle = {backgroundColor: theme?.colors.surface, padding: 20};
 
-  //TODO Chris
   let is_username_set = false;
   //@ts-ignore
   let {username, setUsername} = useUsername();
+  
   const { control, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data: any) => {setUsername(data.name), hideModal()};
 
-  useEffect(() => {
-    if(username == ''){
-      showModal()
-    }
-  }, []);
+  if(!visible && (username == '' || username == null)){
+      console.log("launching Modal");
+      showModal();
+      console.log(visible)
+  }
+  
+  // useEffect(() => {
+  //   console.log("useEffect!",username)
+  //   if(username == '' || username == null){
+  //     console.log("launching Modal");
+  //     showModal();
+  //     console.log(visible)
+  //   }
+  // });
 
   return(
     <Portal>
